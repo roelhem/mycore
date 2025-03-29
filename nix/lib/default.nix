@@ -75,7 +75,7 @@ nix-files
               p: if builtins.isPath p then p else (if lib.hasPrefix "/" p then p else "${root}/${p}")
             ) flakeModulePaths;
 
-            autowireModules = builtins.flatten (builtins.attrValues (zipDirsNixFiles moduleDirs));
+            autowireModules = lib.flatten (builtins.attrValues (zipDirsNixFiles moduleDirs));
 
           in
           [
