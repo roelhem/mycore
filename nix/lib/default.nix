@@ -56,6 +56,7 @@ nix-files
       mycoreInputs = toplevel.inputs;
 
       flake-parts = inputs.flake-parts or mycoreInputs.flake-parts;
+      treefmt-nix = inputs.treefmt-nix or mycoreInputs.treefmt-nix;
 
     in
     module:
@@ -80,6 +81,7 @@ nix-files
           in
           [
             flake-parts.flakeModules.flakeModules
+            treefmt-nix.flakeModule
             ../modules/flake/lib.nix
             ../modules/flake/autowire.nix
             ../modules/flake/docs

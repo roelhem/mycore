@@ -1,5 +1,4 @@
 {
-  inputs,
   config,
   lib,
   moduleType,
@@ -20,8 +19,6 @@ let
 in
 
 {
-  imports = [ inputs.treefmt-nix.flakeModule ];
-
   options.mycore.defaults = {
     enable = mkOption {
       type = types.bool;

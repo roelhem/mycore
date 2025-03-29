@@ -40,6 +40,7 @@
         imports = [
           inputs.devshell.flakeModule
           flake-parts.flakeModules.flakeModules
+          treefmt-nix.flakeModule
           ./nix/modules/flake/devshells.nix
           ./nix/modules/flake/lib.nix
           ./nix/modules/flake/autowire.nix
