@@ -101,8 +101,6 @@
             docs = withSystem "aarch64-darwin" (
               { pkgs, ... }: pkgs.nixosOptionsDoc { options = moduleType.getSubOptions [ ]; }
             );
-            # lib = ...;
-
             # overlays = { };
 
             # templates = { };
