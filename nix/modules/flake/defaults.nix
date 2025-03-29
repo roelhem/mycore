@@ -2,6 +2,7 @@
   inputs,
   config,
   lib,
+  moduleType,
   ...
 }:
 
@@ -44,6 +45,13 @@ in
 
           programs.just.enable = mkDefault true;
         };
+
+        everyDoc = {
+          sections.flake.nixModuleOptions.options = mkDefault moduleType.getSubOptions [ ];
+        };
+
+        docs.default.enable = mkDefault true;
+        docs.default.sections.flake.nixModuleOptions.enable = mkDefault true;
       };
   };
 }

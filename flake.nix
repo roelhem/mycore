@@ -99,9 +99,6 @@
 
             lib = import ./nix/lib { inherit lib defaultSystems inputs; };
 
-            docs = withSystem "aarch64-darwin" (
-              { pkgs, ... }: pkgs.nixosOptionsDoc { options = moduleType.getSubOptions [ ]; }
-            );
             # overlays = { };
 
             # templates = { };
