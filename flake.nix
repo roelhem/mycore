@@ -4,20 +4,20 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    devshell = {
-      url = "github:numtide/devshell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    devshell.url = "github:numtide/devshell";
+    devshell.inputs.nixpkgs.follows = "nixpkgs";
 
-    flake-parts = {
-      url = "github:hercules-ci/flake-parts";
-      inputs.nixpkgs-lib.follows = "nixpkgs";
-    };
+    treefmt-nix.url = "github:numtide/treefmt-nix";
+    treefmt-nix.inputs.nixpkgs.follows = "nixpkgs";
+
+    flake-parts.url = "github:hercules-ci/flake-parts";
+    flake-parts.inputs.nixpkgs-lib.follows = "nixpkgs";
   };
 
   outputs =
     inputs@{
       flake-parts,
+      treefmt-nix,
       nixpkgs,
       ...
     }:
@@ -53,6 +53,7 @@
             ./nix/modules/flake/devshells.nix
             ./nix/modules/flake/lib.nix
             ./nix/modules/flake/autowire.nix
+            ./nix/modules/flake/defaults.nix
             ./nix/modules/flake/docs
           ];
 
@@ -82,7 +83,7 @@
 
               # The nix formatter used in this project. This is the package
               # that is used when running `nix fmt`.
-              formatter = pkgs.nixfmt-rfc-style;
+              # formatter = pkgs.nixfmt-rfc-style;
 
               docs.default = {
                 enable = true;

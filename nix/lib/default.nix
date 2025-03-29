@@ -8,7 +8,7 @@ let
 
   inherit (lib) mkDefault;
 
-  nix-files = import ./nix-files { inherit lib; };
+  nix-files = import ./nix-files.nix { inherit lib; };
 
   inherit (nix-files) zipDirsNixFiles;
 
@@ -97,6 +97,5 @@ nix-files
         systems = mkDefault defaultSystems;
 
         mycore.autowire.enable = mkDefault true;
-
       };
 }
