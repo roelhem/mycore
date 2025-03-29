@@ -18,7 +18,7 @@ toplevel@{
       flake-parts = inputs.flake-parts or toplevel.inputs.flake-parts;
 
     in
-
+    module:
     flake-parts.lib.mkFlake
       {
         inherit inputs;
@@ -32,7 +32,7 @@ toplevel@{
 
         inherit systems;
 
-        imports = [ ];
+        imports = [ module ];
 
       };
 }
