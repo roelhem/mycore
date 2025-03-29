@@ -48,6 +48,7 @@ in
   };
 
   config = {
+
     nixModuleOptions = {
       _nixosOptionsDoc = pkgs.nixosOptionsDoc {
         inherit (cfg)
@@ -56,6 +57,8 @@ in
           revision
           optionIdPrefix
           ;
+
+        transformOptions = lib.traceVal;
       };
     };
 

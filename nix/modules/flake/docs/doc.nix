@@ -17,7 +17,7 @@ in
   options = {
     enable = mkOption {
       type = types.bool;
-      default = true;
+      default = false;
     };
 
     package = mkOption {

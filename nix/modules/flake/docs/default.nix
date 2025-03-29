@@ -8,6 +8,7 @@ let
 
   inherit (lib)
     mkOption
+    mkIf
     types
     ;
 
@@ -45,7 +46,7 @@ in
         };
       };
 
-      config = {
+      config = mkIf (builtins.length (builtins.attrValues enabledDocs) > 0) {
         packages.docs = pkgs.runCommand "docs" { } ''
           mkdir $out
 

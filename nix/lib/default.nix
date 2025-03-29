@@ -1,12 +1,9 @@
 toplevel@{
   lib,
-  defaultSystems,
   inputs,
 }:
 
 let
-
-  inherit (lib) mkDefault;
 
   nix-files = import ./nix-files.nix { inherit lib; };
 
@@ -86,6 +83,7 @@ nix-files
             ../modules/flake/lib.nix
             ../modules/flake/autowire.nix
             ../modules/flake/docs
+            ../modules/flake/defaults.nix
           ]
           ++ (if autowireFlakeModules then autowireModules else [ ])
           ++ [
@@ -93,9 +91,5 @@ nix-files
           ];
 
         _module.args = { inherit root; };
-
-        systems = mkDefault defaultSystems;
-
-        mycore.autowire.enable = mkDefault true;
       };
 }

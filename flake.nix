@@ -34,15 +34,6 @@
           # The default nixpkgs library.
           lib = nixpkgs.lib;
 
-          # The default systems.
-          defaultSystems = [
-            "x86_64-linux"
-            "aarch64-linux"
-            "i686-linux"
-            "x86_64-darwin"
-            "aarch64-darwin"
-          ];
-
         in
         {
 
@@ -56,11 +47,6 @@
             ./nix/modules/flake/defaults.nix
             ./nix/modules/flake/docs
           ];
-
-          # The systems supported by this project.
-          systems = defaultSystems;
-
-          mycore.autowire.enable = true;
 
           # Per-system attributes.
           perSystem =
@@ -84,20 +70,12 @@
               # The nix formatter used in this project. This is the package
               # that is used when running `nix fmt`.
               # formatter = pkgs.nixfmt-rfc-style;
-
-              docs.default = {
-                enable = true;
-                sections.flake.nixModuleOptions.options = moduleType.getSubOptions [ ];
-                sections.flake.nixModuleOptions.enable = true;
-              };
             };
 
           # The usual flake attributes, including system-agnostic ones.
           flake = {
 
-            inherit moduleType;
-
-            lib = import ./nix/lib { inherit lib defaultSystems inputs; };
+            lib = import ./nix/lib { inherit lib inputs; };
 
             # overlays = { };
 

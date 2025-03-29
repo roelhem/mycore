@@ -32,6 +32,16 @@ in
 
   config = mkIf cfg.enable {
 
+    systems = mkDefault [
+      "x86_64-linux"
+      "aarch64-linux"
+      "i686-linux"
+      "x86_64-darwin"
+      "aarch64-darwin"
+    ];
+
+    mycore.autowire.enable = mkDefault true;
+
     perSystem =
       { pkgs, lib, ... }:
       {
@@ -47,10 +57,9 @@ in
         };
 
         everyDoc = {
-          sections.flake.nixModuleOptions.options = mkDefault moduleType.getSubOptions [ ];
+          sections.flake.nixModuleOptions.options = mkDefault (moduleType.getSubOptions [ ]);
         };
 
-        docs.default.enable = mkDefault true;
         docs.default.sections.flake.nixModuleOptions.enable = mkDefault true;
       };
   };
