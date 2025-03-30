@@ -85,6 +85,7 @@ nix-files
             ../modules/flake/lib.nix
             ../modules/flake/autowire.nix
             ../modules/flake/docs
+            ../modules/flake/devShells
             ../modules/flake/defaults.nix
           ]
           ++ (if autowireFlakeModules then autowireModules else [ ])
