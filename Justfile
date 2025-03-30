@@ -13,4 +13,4 @@ check:
     nix flake check
 
 update *inputs:
-    nix flake update {{inputs}}
+    nix flake update {{ inputs }}
