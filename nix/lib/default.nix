@@ -57,6 +57,7 @@ nix-files
 
       flake-parts = inputs.flake-parts or mycoreInputs.flake-parts;
       treefmt-nix = inputs.treefmt-nix or mycoreInputs.treefmt-nix;
+      git-hooks-nix = inputs.git-hooks-nix or mycoreInputs.git-hooks-nix;
 
     in
     module:
@@ -82,6 +83,7 @@ nix-files
           [
             flake-parts.flakeModules.flakeModules
             treefmt-nix.flakeModule
+            git-hooks-nix.flakeModule
             ../modules/flake/lib.nix
             ../modules/flake/autowire.nix
             ../modules/flake/docs

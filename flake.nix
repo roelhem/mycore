@@ -9,12 +9,16 @@
 
     flake-parts.url = "github:hercules-ci/flake-parts";
     flake-parts.inputs.nixpkgs-lib.follows = "nixpkgs";
+
+    git-hooks-nix.url = "github:cachix/git-hooks.nix";
+    git-hooks-nix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
     inputs@{
       flake-parts,
       treefmt-nix,
+      git-hooks-nix,
       nixpkgs,
       ...
     }:
@@ -37,6 +41,7 @@
         imports = [
           flake-parts.flakeModules.flakeModules
           treefmt-nix.flakeModule
+          git-hooks-nix.flakeModule
           ./nix/modules/flake/lib.nix
           ./nix/modules/flake/autowire.nix
           ./nix/modules/flake/defaults.nix

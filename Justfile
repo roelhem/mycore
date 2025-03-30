@@ -5,8 +5,8 @@ default:
     @just --list
 
 # Format the code in this repository
-format:
-    nix fmt
+format *files:
+    nix fmt {{ files }}
 
 # Run all checks.
 check:
