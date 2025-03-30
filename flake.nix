@@ -4,9 +4,6 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    devshell.url = "github:numtide/devshell";
-    devshell.inputs.nixpkgs.follows = "nixpkgs";
-
     treefmt-nix.url = "github:numtide/treefmt-nix";
     treefmt-nix.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -38,14 +35,13 @@
 
         # Import flake modules here.
         imports = [
-          inputs.devshell.flakeModule
           flake-parts.flakeModules.flakeModules
           treefmt-nix.flakeModule
-          ./nix/modules/flake/devshells.nix
           ./nix/modules/flake/lib.nix
           ./nix/modules/flake/autowire.nix
           ./nix/modules/flake/defaults.nix
           ./nix/modules/flake/docs
+          ./nix/modules/flake/devShells
         ];
 
         # Per-system attributes.

@@ -53,6 +53,10 @@ in
           programs.just.enable = mkDefault true;
         };
 
+        mycore = {
+          devShells.default.just.enable = mkDefault true;
+        };
+
         everyDoc = {
           sections.flake.nixModuleOptions.options = mkDefault (moduleType.getSubOptions [ ]);
         };

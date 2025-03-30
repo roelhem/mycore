@@ -1,7 +1,9 @@
 import? 'local.just'
 
-_default:
+[private]
+default:
     @just --list
 
+# Format the code in this repository
 format:
     nix fmt
