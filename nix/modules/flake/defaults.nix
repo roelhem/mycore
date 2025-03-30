@@ -60,6 +60,7 @@ in
 
         pre-commit = {
           settings.hooks.treefmt.enable = mkDefault true;
+          settings.hooks.treefmt.settings.fail-on-change = mkDefault false;
           settings.hooks.treefmt.packageOverrides.treefmt = config.treefmt.build.wrapper;
         };
 

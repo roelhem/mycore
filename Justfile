@@ -12,5 +12,6 @@ format *files:
 check:
     nix flake check
 
+# Update nix flake dependencies.
 update *inputs:
     nix flake update {{ inputs }}
