@@ -26,7 +26,12 @@ in
         everyDevShell = mkOption {
           type = types.deferredModuleWith {
             staticModules = [
-              { _module.args = { inherit pkgs; }; }
+              {
+                _module.args = {
+                  inherit pkgs;
+                  systemConfig = config;
+                };
+              }
               {
                 options.enable = mkOption {
                   type = types.bool;
@@ -34,7 +39,6 @@ in
                 };
               }
               ./devShell.nix
-              ./just.nix
             ];
           };
           default = { };

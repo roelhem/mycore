@@ -48,6 +48,9 @@ cabal.project.local~
 # Just
 local.just
 
+# Pre-commit
+/.pre-commit-config.yaml
+
 # -------------------------
 # ---- BUILD ARTIFACTS ----
 # -------------------------

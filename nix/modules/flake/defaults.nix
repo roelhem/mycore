@@ -40,7 +40,12 @@ in
     mycore.autowire.enable = mkDefault true;
 
     perSystem =
-      { pkgs, lib, ... }:
+      {
+        config,
+        pkgs,
+        lib,
+        ...
+      }:
       {
         treefmt = {
           projectRootFile = mkDefault "flake.nix";
@@ -53,8 +58,14 @@ in
           programs.just.enable = mkDefault true;
         };
 
+        pre-commit = {
+          settings.hooks.treefmt.enable = mkDefault true;
+          settings.hooks.treefmt.packageOverrides.treefmt = config.treefmt.build.wrapper;
+        };
+
         mycore = {
           devShells.default.just.enable = mkDefault true;
+          devShells.default.pre-commit.enable = mkDefault true;
         };
 
         everyDoc = {

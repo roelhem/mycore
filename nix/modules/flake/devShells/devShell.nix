@@ -15,6 +15,8 @@ in
   imports = [
     ./env.nix
     ./packages.nix
+    ./just.nix
+    ./pre-commit.nix
   ];
 
   options = {
