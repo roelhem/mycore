@@ -18,6 +18,8 @@ in
     { pkgs, config, ... }:
     let
       cfg = config.mycore;
+
+      enabledDevShells = lib.filterAttrs (name: value: value.enable) cfg.devShells;
     in
     {
       options.mycore = {
@@ -25,6 +27,12 @@ in
           type = types.deferredModuleWith {
             staticModules = [
               { _module.args = { inherit pkgs; }; }
+              {
+                options.enable = mkOption {
+                  type = types.bool;
+                  default = true;
+                };
+              }
               ./devShell.nix
               ./just.nix
             ];
@@ -39,7 +47,7 @@ in
       };
 
       config = {
-        devShells = builtins.mapAttrs (name: value: mkDefault value.finalPackage) cfg.devShells;
+        devShells = builtins.mapAttrs (name: value: mkDefault value.finalPackage) enabledDevShells;
       };
     }
   );
