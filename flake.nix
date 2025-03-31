@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/24.11";
 
     treefmt-nix.url = "github:numtide/treefmt-nix";
     treefmt-nix.inputs.nixpkgs.follows = "nixpkgs";
@@ -20,6 +21,7 @@
       treefmt-nix,
       git-hooks-nix,
       nixpkgs,
+      nixpkgs-stable,
       ...
     }:
     flake-parts.lib.mkFlake { inherit inputs; } (
@@ -47,6 +49,7 @@
           ./nix/modules/flake/defaults.nix
           ./nix/modules/flake/docs
           ./nix/modules/flake/devShells
+          ./nix/modules/flake/languages
         ];
 
         # Per-system attributes.
@@ -60,6 +63,16 @@
             ...
           }:
           {
+            _module.args = {
+              stable = import nixpkgs-stable {
+                inherit system;
+              };
+            };
+
+            mycore.languages.haskell.enable = true;
+            mycore.languages.elm.enable = true;
+            mycore.everyDevShell.packages = with pkgs; [ zlib ];
+
             # apps = { };
 
             # packages = { };

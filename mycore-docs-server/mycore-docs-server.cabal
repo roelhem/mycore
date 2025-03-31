@@ -1,0 +1,79 @@
+cabal-version: 2.2
+name:          mycore-docs-server
+version:       0.0.0.0
+author:        Roel Hemerik
+build-type:    Simple
+
+common extensions
+  default-language:   Haskell2010
+  default-extensions:
+    AllowAmbiguousTypes
+    ConstraintKinds
+    DataKinds
+    DeriveAnyClass
+    DeriveDataTypeable
+    DeriveFunctor
+    DeriveGeneric
+    DerivingStrategies
+    DerivingVia
+    DuplicateRecordFields
+    ExplicitNamespaces
+    FlexibleContexts
+    FlexibleInstances
+    FunctionalDependencies
+    GADTs
+    InstanceSigs
+    KindSignatures
+    LambdaCase
+    MultiParamTypeClasses
+    NoStarIsType
+    OverloadedLabels
+    OverloadedStrings
+    PackageImports
+    PolyKinds
+    RankNTypes
+    RecordWildCards
+    ScopedTypeVariables
+    TupleSections
+    TypeApplications
+    TypeFamilies
+    TypeOperators
+    UndecidableInstances
+    ViewPatterns
+
+common ghc-options
+  ghc-options: -Wall
+
+common dependencies
+  build-depends:
+    , aeson
+    , attoparsec
+    , base                   >=4.7 && <5
+    , base-compat
+    , bifunctors
+    , bytestring
+    , containers
+    , directory
+    , http-api-data
+    , http-client
+    , http-media
+    , http-types
+    , json-spec-elm-servant
+    , lucid
+    , mtl
+    , string-conversions
+    , text
+    , transformers
+    , wai
+    , warp
+
+library
+  import:          extensions
+  import:          ghc-options
+  import:          dependencies
+  exposed-modules: Mycore.Docs.Server
+  hs-source-dirs:  src
+  build-depends:
+    , servant
+    , servant-lucid
+    , servant-server

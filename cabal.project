@@ -1,0 +1,8 @@
+packages:
+    mycore-docs-server/
+
+tests: True
+optimization: False
+
+package *
+    ghc-options: -fshow-hole-constraints -fhide-source-paths

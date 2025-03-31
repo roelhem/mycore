@@ -55,6 +55,7 @@ nix-files
 
       mycoreInputs = toplevel.inputs;
 
+      nixpkgs-stable = inputs.nixpkgs-stable or mycoreInputs.nixpkgs-stable;
       flake-parts = inputs.flake-parts or mycoreInputs.flake-parts;
       treefmt-nix = inputs.treefmt-nix or mycoreInputs.treefmt-nix;
       git-hooks-nix = inputs.git-hooks-nix or mycoreInputs.git-hooks-nix;
@@ -86,9 +87,10 @@ nix-files
             git-hooks-nix.flakeModule
             ../modules/flake/lib.nix
             ../modules/flake/autowire.nix
+            ../modules/flake/defaults.nix
             ../modules/flake/docs
             ../modules/flake/devShells
-            ../modules/flake/defaults.nix
+            ../modules/flake/languages
           ]
           ++ (if autowireFlakeModules then autowireModules else [ ])
           ++ [
@@ -96,5 +98,15 @@ nix-files
           ];
 
         _module.args = { inherit root; };
+
+        perSystem =
+          { system, ... }:
+          {
+            _module.args = {
+              stable = import nixpkgs-stable {
+                inherit system;
+              };
+            };
+          };
       };
 }

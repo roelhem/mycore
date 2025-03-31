@@ -67,6 +67,7 @@ in
         mycore = {
           devShells.default.just.enable = mkDefault true;
           devShells.default.pre-commit.enable = mkDefault true;
+          devShells.default.haskell.tools.haskell-language-server.enable = mkDefault true;
         };
 
         everyDoc = {

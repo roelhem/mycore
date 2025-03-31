@@ -15,8 +15,10 @@ in
   imports = [
     ./env.nix
     ./packages.nix
-    ./just.nix
     ./pre-commit.nix
+    ./just.nix
+    ./haskell.nix
+    ./elm.nix
   ];
 
   options = {
@@ -26,9 +28,9 @@ in
     };
 
     stdenv = mkOption {
-      default = pkgs.stdenvNoCC;
-      defaultText = lib.literalExpression "pkgs.stdenvNoCC";
-      example = lib.literalExpression "pkgs.stdenv";
+      default = pkgs.stdenv;
+      defaultText = lib.literalExpression "pkgs.stdenv";
+      example = lib.literalExpression "pkgs.stdenvNoCC";
       description = "The standard environment from which the shell derivation will be created.";
       type = types.package;
     };
