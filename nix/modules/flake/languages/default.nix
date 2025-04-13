@@ -22,6 +22,10 @@ in
       imports = [
         ./haskell.nix
         ./elm.nix
+        ./just.nix
+        ./go.nix
+        ./javascript.nix
+        ./python.nix
       ];
     }
   );

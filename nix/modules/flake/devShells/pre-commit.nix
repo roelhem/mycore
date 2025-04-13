@@ -2,6 +2,7 @@
   config,
   lib,
   systemConfig,
+  pkgs,
   ...
 }:
 
@@ -10,6 +11,16 @@ let
   inherit (lib) mkEnableOption mkIf;
 
   cfg = config.pre-commit;
+
+  preCommitInstall = pkgs.writeShellApplication {
+    name = "pre-commit-install";
+
+    runtimeInputs = systemConfig.pre-commit.settings.enabledPackages;
+
+    text = systemConfig.pre-commit.installationScript;
+
+    checkPhase = "";
+  };
 
 in
 
@@ -20,11 +31,7 @@ in
 
   config = mkIf cfg.enable {
 
-    shellHook = systemConfig.pre-commit.installationScript;
-
-    nativeBuildInputs = systemConfig.pre-commit.settings.enabledPackages ++ [
-      systemConfig.pre-commit.settings.package
-    ];
+    shellHook = "${preCommitInstall}/bin/pre-commit-install";
 
   };
 }

@@ -48,14 +48,12 @@ in
       }:
       {
         treefmt = {
-          projectRootFile = mkDefault "flake.nix";
+          projectRootFile = mkDefault "flake.lock";
 
           programs.nixfmt.enable = mkDefault (
             pkgs.lib.meta.availableOn pkgs.stdenv.buildPlatform pkgs.nixfmt-rfc-style.compiler
           );
           programs.nixfmt.package = mkDefault pkgs.nixfmt-rfc-style;
-
-          programs.just.enable = mkDefault true;
         };
 
         pre-commit = {
@@ -65,9 +63,8 @@ in
         };
 
         mycore = {
-          devShells.default.just.enable = mkDefault true;
+          languages.just.enable = mkDefault true;
           devShells.default.pre-commit.enable = mkDefault true;
-          devShells.default.haskell.tools.haskell-language-server.enable = mkDefault true;
         };
 
         everyDoc = {

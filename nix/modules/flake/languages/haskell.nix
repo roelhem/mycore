@@ -35,6 +35,7 @@ in
 
   config = mkIf cfg.enable {
     mycore.everyDevShell.haskell.enable = mkDefault true;
+    mycore.devShells.default.haskell.tools.haskell-language-server.enable = mkDefault true;
 
     treefmt.programs.cabal-fmt.enable = mkDefault true;
     treefmt.programs.stylish-haskell.enable = mkDefault (cfg.formatter == "stylish-haskell");

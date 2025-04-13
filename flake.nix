@@ -71,6 +71,9 @@
 
             mycore.languages.haskell.enable = true;
             mycore.languages.elm.enable = true;
+            mycore.languages.go.enable = true;
+            mycore.languages.javascript.enable = true;
+            mycore.languages.python.enable = true;
             mycore.everyDevShell.packages = with pkgs; [ zlib ];
 
             # apps = { };

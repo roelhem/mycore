@@ -19,6 +19,9 @@ in
     ./just.nix
     ./haskell.nix
     ./elm.nix
+    ./go.nix
+    ./javascript.nix
+    ./python.nix
   ];
 
   options = {
@@ -35,16 +38,25 @@ in
       type = types.package;
     };
 
+    dirPackage = mkOption {
+      internal = true;
+      description = "The directory that contains all dependencies for the dev shell.";
+      readOnly = true;
+      type = types.package;
+    };
+
     finalPackage = mkOption {
       description = "The shell derivation resulting from passing the evaluated configuration to mkDerivation.";
       readOnly = true;
       type = types.package;
     };
+
     shellHook = mkOption {
       default = "";
       description = "Bash code evaluated when the shell environment starts.";
       type = types.lines;
     };
+
     additionalArguments = mkOption {
       default = { };
       description = "Arbitrary additional arguments passed to mkDerivation.";
@@ -53,6 +65,11 @@ in
   };
 
   config = {
+    dirPackage = pkgs.buildEnv {
+      name = "${config.name}-dir";
+      paths = config.packages;
+    };
+
     finalPackage = config.stdenv.mkDerivation (
       lib.recursiveUpdate {
         inherit (config)
@@ -66,7 +83,7 @@ in
         # mkShell->make-shell migrations be bit-identical and re-use the
         # same cache.
         inherit (pkgs.mkShell { }) preferLocalBuild phases buildPhase;
-        nativeBuildInputs = config.packages ++ config.nativeBuildInputs;
+        nativeBuildInputs = [ config.dirPackage ] ++ config.nativeBuildInputs;
         env = config.finalEnv;
       } config.additionalArguments
     );

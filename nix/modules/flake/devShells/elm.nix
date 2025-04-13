@@ -87,12 +87,9 @@ in
     packages = mapAttrsToList (name: tool: tool.package) enabledTools;
 
     shellHook = ''
-      echo;
-      echo "Available Elm tools:";
       ${concatMapAttrsStringSep "\n" (
         name: value: "echo \"  ${name} (${value.package.name})\";"
       ) enabledTools}
-      echo;
     '';
 
   };
