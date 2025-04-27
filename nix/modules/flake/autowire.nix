@@ -81,7 +81,7 @@ let
               enable = mkDefault true;
               files = zipDirsNixFiles config.paths;
               discoveredValue = mapAttrsMaybe (
-                name: files: lib.nameValuePair name (config.itemFromNixFiles files)
+                name: files: lib.nameValuePair name (config.itemFromNixFiles name files)
               ) config.files;
               value = config.defaultValue // config.discoveredValue;
             };
