@@ -102,7 +102,7 @@ let
       config.itemFromNixFiles =
         name:
         (zom {
-          one = file: (import file);
+          one = file: { imports = [ file ]; };
           many = files: {
             imports = files;
           };

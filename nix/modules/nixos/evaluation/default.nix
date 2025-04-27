@@ -4,7 +4,7 @@ with lib;
 
 let
 
-  # cfg = config.mycore.evaluation;
+  cfg = config.mycore.evaluation;
 
 in
 
@@ -20,7 +20,7 @@ in
     };
   };
 
-  config = {
+  config = mkIf cfg.enable {
 
     virtualisation.vmVariant = {
       networking.useDHCP = mkDefault false;
@@ -29,7 +29,7 @@ in
       # services.getty.autologinUser = defaultUser.name;
       security.sudo.wheelNeedsPassword = false;
 
-      virtualisation.graphics = mkDefault config.mycore.evaluation.graphical;
+      virtualisation.graphics = mkDefault cfg.graphical;
     };
 
   };
