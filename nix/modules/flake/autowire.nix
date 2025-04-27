@@ -99,6 +99,15 @@ let
         default = true;
       };
 
+      config.itemFromNixFiles =
+        name:
+        (zom {
+          one = file: import file;
+          many = files: {
+            imports = files;
+          };
+        });
+
       config.defaultValue = mkIf config.autoDefaultModule {
         default = {
           imports = builtins.attrValues config.discoveredValue;
