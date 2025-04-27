@@ -12,6 +12,9 @@ format *files:
 check:
     nix flake check
 
+repl:
+    nix repl --file ./repl.nix
+
 # Update nix flake dependencies.
 update *inputs:
     nix flake update {{ inputs }}

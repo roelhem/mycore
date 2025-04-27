@@ -29,6 +29,7 @@
         config,
         moduleType,
         withSystem,
+        mycore-lib,
         ...
       }:
       let
@@ -75,6 +76,22 @@
             mycore.languages.javascript.enable = true;
             mycore.languages.python.enable = true;
             mycore.everyDevShell.packages = with pkgs; [ zlib ];
+
+            apps = {
+              mycore-evaluation-vm = {
+                type = "app";
+                program = "${config.packages.mycore-evaluation-vm}/bin/run-nixos-vm";
+              };
+            };
+
+            packages = {
+              mycore-evaluation-vm =
+                (mycore-lib.mkNixosSystem { } {
+                  imports = [ ./nix/configurations/nixos/mycore-evaluation.nix ];
+                  nixpkgs.system = "${pkgs.stdenv.hostPlatform.qemuArch}-linux";
+                  virtualisation.vmVariant.virtualisation.host.pkgs = pkgs;
+                }).config.system.build.vm;
+            };
 
             # apps = { };
 

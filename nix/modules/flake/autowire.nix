@@ -102,12 +102,10 @@ let
       config.itemFromNixFiles =
         name:
         (zom {
-          one = file: import file;
-          many =
-            files:
-            builtins.trace files {
-              imports = files;
-            };
+          one = file: (import file);
+          many = files: {
+            imports = files;
+          };
         });
 
       config.defaultValue = mkIf config.autoDefaultModule {

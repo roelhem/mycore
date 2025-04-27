@@ -31,6 +31,7 @@ cabal.sandbox.config
 /elpa/
 .cask/
 
+
 # -------------------------------------------
 # ---- ENVIRONMENT / LOCAL CONFIGURATION ----
 # -------------------------------------------
@@ -115,6 +116,9 @@ __pycache__/
 
 # Built Visual Studio Code Extensions.
 *.vsix
+
+# Vm artifacts
+*.qcow2
 
 # -------------------
 # ---- LOG FILES ----
