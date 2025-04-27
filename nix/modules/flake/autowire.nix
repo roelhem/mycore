@@ -103,9 +103,11 @@ let
         name:
         (zom {
           one = file: import file;
-          many = files: {
-            imports = files;
-          };
+          many =
+            files:
+            builtins.trace files {
+              imports = files;
+            };
         });
 
       config.defaultValue = mkIf config.autoDefaultModule {
