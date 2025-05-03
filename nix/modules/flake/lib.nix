@@ -86,7 +86,7 @@ let
     };
   };
 
-  mycore-lib = (import ./nix/lib { inherit lib inputs; }) // {
+  mycore-lib = (import ../../lib { inherit lib inputs; }) // {
     inherit mkLibraryOption specialArgsFor;
 
     mkNixosSystem =
