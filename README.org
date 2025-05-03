@@ -1,3 +1,10 @@
 #+title: Base configuration for my Personal Projects
 
 This repository contains the common configuration for all my personal projects.
+
+* Features
+
+** Autowiring
+
+This package contains a nix flake-parts module that handles autowiring of the flake based on
+the directory structure (inspired by [[https://github.com/srid/nixos-unified][srid/nixos-unified]]).
