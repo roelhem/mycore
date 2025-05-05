@@ -60,19 +60,19 @@ let
               };
 
               defaultValue = mkOption {
-                type = types.lazyAttrsOf types.anything;
+                type = types.lazyAttrsOf types.raw;
                 visible = false;
                 default = { };
               };
 
               discoveredValue = mkOption {
-                type = types.attrsOf types.anything;
+                type = types.attrsOf types.raw;
                 visible = false;
                 readOnly = true;
               };
 
               value = mkOption {
-                type = types.lazyAttrsOf types.anything;
+                type = types.lazyAttrsOf types.raw;
                 visible = false;
               };
             };
